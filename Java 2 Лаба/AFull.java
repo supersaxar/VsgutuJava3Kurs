@@ -26,19 +26,30 @@ public class AFull {
 
         double avgLength = Arrays.stream(numbers).mapToInt(String::length).average().orElse(0);
         System.out.println("Chisla, dlina kotoryh menshe sredney (" + avgLength + "):");
-        for (String num : numbers) {
-            if (num.length() < avgLength) {
-                System.out.println(num + ", dlina: " + num.length());
-            }
-        }
+//        for (String num : numbers) {
+//            if (num.length() < avgLength) {
+//                System.out.println(num + ", dlina: " + num.length());
+//            }
+//        }
 
-        String minDistinctDigits = numbers[0];
-        for (String num : numbers) {
-            if (distinctDigits(num) < distinctDigits(minDistinctDigits)) {
-                minDistinctDigits = num;
-            }
-        }
-        System.out.println("Chislo s minimalnym kolichestvom razlichnyh tsifr: " + minDistinctDigits);
+        Arrays.stream(numbers)
+                .filter(num -> num.length() < avgLength)
+                .forEach(num -> System.out.println(num + ", dlina: " + num.length()));
+
+//        String minDistinctDigits = numbers[0];
+//        for (String num : numbers) {
+//            if (distinctDigits(num) < distinctDigits(minDistinctDigits)) {
+//                minDistinctDigits = num;
+//            }
+//        }
+//        System.out.println("Chislo s minimalnym kolichestvom razlichnyh tsifr: " + minDistinctDigits);
+
+        String minDistinctDigits = Arrays.stream(numbers)
+                .min(Comparator.comparingInt(num -> distinctDigits(num)))
+                .orElse(numbers[0]);
+        System.out.println("Chislo s minimalnym kolichestvom razlichnyh tsifr: " + minDistinctDigits);  
+
+
 
         int evenDigitNumbers = 0;
         int equalEvenOddDigits = 0;
