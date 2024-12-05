@@ -27,13 +27,11 @@ class TextTest {
         Sentence sentence = new Sentence("Тестовое предложение");
         text.addSentence(sentence);
 
-        // Используем normalize() для унификации переводов строк
         String expected = normalize("""
                 Заголовок: Тестовый заголовок
                 Текст:
                 Тестовое предложение.""");
-
-        // Перенаправляем System.out в ByteArrayOutputStream для проверки вывода
+        
         String actual = captureSystemOut(() -> text.printText());
 
         assertEquals(expected, actual);
@@ -63,12 +61,10 @@ class TextTest {
         assertNotEquals(text, differentText);
     }
 
-    // Вспомогательный метод для унификации переводов строк
     private String normalize(String input) {
         return input.replace("\r\n", "\n").trim();
     }
 
-    // Вспомогательный метод для захвата вывода System.out
     private String captureSystemOut(Runnable action) {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
