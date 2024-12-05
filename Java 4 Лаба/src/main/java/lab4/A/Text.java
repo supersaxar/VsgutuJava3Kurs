@@ -33,7 +33,12 @@ class Text {
     public void printText() {
         System.out.println("Заголовок: " + title);
         System.out.println("Текст:");
-        sentences.forEach(sentence -> System.out.println(sentence.toString()));
+        for (int i = 0; i < sentences.size(); i++) {
+            System.out.print(sentences.get(i));
+            if (i < sentences.size() - 1) {
+                System.out.println();
+            }
+        }
     }
 
     @Override
