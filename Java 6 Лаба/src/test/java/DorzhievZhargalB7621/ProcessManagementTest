@@ -32,7 +32,7 @@ class ProcessManagementTest {
     @Test
     void testJournalMethods() {
         assertDoesNotThrow(() -> journal.createContract("Клиент В"));
-        assertDoesNotThrow(() -> journal.editContent("Обновлен журнал"));
+        assertDoesNotThrow(() -> journal.editContent("Обновлен выпуск"));
         assertDoesNotThrow(journal::format);
         assertDoesNotThrow(journal::sendToPrint);
         assertDoesNotThrow(journal::cancel);
@@ -44,7 +44,7 @@ class ProcessManagementTest {
     @Test
     void testManualMethods() {
         assertDoesNotThrow(() -> manual.createContract("Клиент Г"));
-        assertDoesNotThrow(() -> manual.editContent("Обновлено учебное пособие "));
+        assertDoesNotThrow(() -> manual.editContent("Обновлена тема"));
         assertDoesNotThrow(manual::format);
         assertDoesNotThrow(manual::sendToPrint);
         assertDoesNotThrow(manual::cancel);
