@@ -12,7 +12,7 @@ public class Main {
         publications.add(new Manual("Учебное пособие", "Тема учебного пособия"));
 
         for (Publication pub : publications) {
-            pub.createContract("Клиент 1");
+            pub.createContract("Клиент А");
             pub.editContent("Издание редактировано");
             pub.format();
             pub.sendToPrint();
