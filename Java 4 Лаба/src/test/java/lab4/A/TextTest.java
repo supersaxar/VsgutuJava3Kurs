@@ -27,41 +27,31 @@ class TextTest {
         Sentence sentence = new Sentence("Тестовое предложение");
         text.addSentence(sentence);
 
-        String expected = """
+        // Используем normalize() для унификации переводов строк
+        String expected = normalize("""
                 Заголовок: Тестовый заголовок
                 Текст:
-                Тестовое предложение.""";
+                Тестовое предложение.""");
 
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(outContent));
+        // Перенаправляем System.out в ByteArrayOutputStream для проверки вывода
+        String actual = captureSystemOut(() -> text.printText());
 
-        text.printText();
-
-        System.setOut(originalOut);
-
-        assertEquals(expected, outContent.toString().trim());
+        assertEquals(expected, actual);
     }
 
     @Test
     void testAppendText() {
         text.appendText("Первое предложение. Второе предложение!");
 
-        String expected = """
+        String expected = normalize("""
                 Заголовок: Тестовый заголовок
                 Текст:
                 Первое предложение.
-                Второе предложение!""";
+                Второе предложение!""");
 
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(outContent));
+        String actual = captureSystemOut(() -> text.printText());
 
-        text.printText();
-
-        System.setOut(originalOut);
-
-        assertEquals(expected, outContent.toString().trim());
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -71,5 +61,24 @@ class TextTest {
 
         assertEquals(text, sameText);
         assertNotEquals(text, differentText);
+    }
+
+    // Вспомогательный метод для унификации переводов строк
+    private String normalize(String input) {
+        return input.replace("\r\n", "\n").trim();
+    }
+
+    // Вспомогательный метод для захвата вывода System.out
+    private String captureSystemOut(Runnable action) {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+
+        try {
+            System.setOut(new PrintStream(outContent));
+            action.run();
+            return normalize(outContent.toString());
+        } finally {
+            System.setOut(originalOut);
+        }
     }
 }
