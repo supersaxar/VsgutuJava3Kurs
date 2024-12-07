@@ -1,3 +1,5 @@
+//Доржиев Жаргал Группа Б-762-1 Вариант 1
+
 package DorzhievZhargalB7621.C;
 
 import java.util.regex.Pattern;
