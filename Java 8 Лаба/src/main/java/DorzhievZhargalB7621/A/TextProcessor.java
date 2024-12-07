@@ -1,5 +1,7 @@
 package DorzhievZhargalB7621.A;
 
+//Доржиев Жаргал Группа Б-762-1 Вариант 1
+
 public class TextProcessor {
     public static String replaceKthLetter(String text, int k, char replacement) {
         if (k <= 0 || text == null || text.isEmpty()) {
