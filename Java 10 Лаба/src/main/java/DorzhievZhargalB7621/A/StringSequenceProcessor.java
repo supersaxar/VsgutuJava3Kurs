@@ -7,15 +7,19 @@ import java.nio.file.*;
 
 public class StringSequenceProcessor {
     public static void main(String[] args) {
-        String inputFile = "C:\\Users\\Aye11\\IdeaProjects\\Java10Lab\\src\\main\\java\\DorzhievZhargalB7621\\A\\input.txt";
-        String outputFile = "C:\\Users\\Aye11\\IdeaProjects\\Java10Lab\\src\\main\\java\\DorzhievZhargalB7621\\A\\output.txt";
-        String substringToRemove = "УБРАТЬ";
-
         try {
-            processFile(inputFile, outputFile, substringToRemove);
-            System.out.println("Processing complete. Output written to " + outputFile);
-        } catch (IOException e) {
+            String projectDir = System.getProperty("user.dir");
+
+            Path inputPath = Paths.get(projectDir, "Java 10 Лаба", "src", "main", "java", "DorzhievZhargalB7621", "A", "input.txt");
+            Path outputPath = Paths.get(projectDir, "Java 10 Лаба", "src", "main", "java", "DorzhievZhargalB7621", "A", "output.txt");
+
+            String substringToRemove = "УБРАТЬ";
+
+            processFile(inputPath.toString(), outputPath.toString(), substringToRemove);
+            System.out.println("Processing complete. Output written to " + outputPath);
+        } catch (Exception e) {
             System.err.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
