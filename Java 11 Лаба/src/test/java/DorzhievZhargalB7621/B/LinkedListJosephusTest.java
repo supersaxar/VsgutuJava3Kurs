@@ -1,17 +1,28 @@
 package DorzhievZhargalB7621.B;
 
 import org.junit.Test;
+
+import java.util.LinkedList;
+
 import static org.junit.Assert.*;
 
 public class LinkedListJosephusTest {
     @Test
     public void testValidInput() {
-        assertEquals(1, JosephusProblem.solveWithLinkedList(1));
-        assertEquals(1, JosephusProblem.solveWithLinkedList(8));
+        LinkedList<Integer> linkedListCircle = new LinkedList<>();
+        linkedListCircle.add(1);
+        assertEquals(1, JosephusProblem.solveJosephusProblem(linkedListCircle));
+
+        linkedListCircle.clear();
+        for (int i = 1; i <= 8; i++) {
+            linkedListCircle.add(i);
+        }
+        assertEquals(1, JosephusProblem.solveJosephusProblem(linkedListCircle));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidInput() {
-        JosephusProblem.solveWithLinkedList(0);
+        LinkedList<Integer> emptyList = new LinkedList<>();
+        JosephusProblem.solveJosephusProblem(emptyList);
     }
 }
