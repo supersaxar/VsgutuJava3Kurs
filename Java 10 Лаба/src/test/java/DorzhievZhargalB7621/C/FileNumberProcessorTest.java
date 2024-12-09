@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileNumberProcessorTest {
-    private static final String BASE_DIRECTORY = "output";
+    private static final String BASE_DIRECTORY = "Java 10 Лаба/src/main/java/DorzhievZhargalB7621/C/output";
     private static final String FILE_NAME = "random_numbers.txt";
 
     @BeforeEach
