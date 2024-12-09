@@ -27,17 +27,6 @@ public class FileNumberProcessor {
         return numbers;
     }
 
-    public static void writeNumbersToFile(List<Integer> numbers) throws IOException {
-        createDirectory();
-        File file = new File(BASE_DIRECTORY, FILE_NAME);
-
-        try (PrintWriter writer = new PrintWriter(file)) {
-            for (Integer number : numbers) {
-                writer.println(number);
-            }
-        }
-    }
-
     public static List<Integer> readAndSortNumbers() throws IOException {
         File file = new File(BASE_DIRECTORY, FILE_NAME);
         List<Integer> numbers = new ArrayList<>();
@@ -52,24 +41,26 @@ public class FileNumberProcessor {
         return numbers;
     }
 
-    public static void writeSortedNumbersToFile(List<Integer> sortedNumbers) throws IOException {
-        File file = new File(BASE_DIRECTORY, FILE_NAME);
+    public static void writeNumbersToFile(List<Integer> numbers, String fileName) throws IOException {
+        createDirectory();
+        File file = new File(BASE_DIRECTORY, fileName);
 
         try (PrintWriter writer = new PrintWriter(file)) {
-            for (Integer number : sortedNumbers) {
+            for (Integer number : numbers) {
                 writer.println(number);
             }
         }
     }
 
+
     public static void main(String[] args) {
         try {
             List<Integer> randomNumbers = generateRandomNumbers(20, 100);
 
-            writeNumbersToFile(randomNumbers);
+            writeNumbersToFile(randomNumbers, FILE_NAME);
 
             List<Integer> sortedNumbers = readAndSortNumbers();
-            writeSortedNumbersToFile(sortedNumbers);
+            writeNumbersToFile(sortedNumbers, FILE_NAME);
 
             System.out.println("Файл успешно создан и отсортирован.");
         } catch (IOException e) {
