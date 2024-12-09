@@ -2,10 +2,12 @@ package DorzhievZhargalB7621.C;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileNumberProcessorTest {
@@ -47,25 +49,10 @@ class FileNumberProcessorTest {
     void testWriteAndReadNumbers() throws IOException {
         List<Integer> originalNumbers = Arrays.asList(5, 2, 8, 1, 9);
 
-        FileNumberProcessor.writeNumbersToFile(originalNumbers);
+        FileNumberProcessor.writeNumbersToFile(originalNumbers, FILE_NAME);
         List<Integer> readNumbers = FileNumberProcessor.readAndSortNumbers();
 
         List<Integer> expectedSortedNumbers = Arrays.asList(1, 2, 5, 8, 9);
         assertEquals(expectedSortedNumbers, readNumbers, "Числа должны быть отсортированы");
-    }
-
-    @Test
-    void testWriteSortedNumbersToFile() throws IOException {
-        List<Integer> unsortedNumbers = Arrays.asList(5, 2, 8, 1, 9);
-        FileNumberProcessor.writeNumbersToFile(unsortedNumbers);
-
-        List<Integer> sortedNumbers = FileNumberProcessor.readAndSortNumbers();
-        FileNumberProcessor.writeSortedNumbersToFile(sortedNumbers);
-
-        List<Integer> finalReadNumbers = FileNumberProcessor.readAndSortNumbers();
-        List<Integer> expectedSortedNumbers = Arrays.asList(1, 2, 5, 8, 9);
-
-        assertEquals(expectedSortedNumbers, finalReadNumbers,
-                "Файл должен содержать отсортированные числа");
     }
 }
