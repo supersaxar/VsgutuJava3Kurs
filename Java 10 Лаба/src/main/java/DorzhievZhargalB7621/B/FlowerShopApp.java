@@ -10,7 +10,7 @@ public class FlowerShopApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Bouquet bouquet = new Bouquet();
-        String fileName = "C:\\Users\\Aye11\\IdeaProjects\\Java10Lab\\src\\main\\java\\DorzhievZhargalB7621\\B\\bouquet.txt";
+        String fileName = Paths.get(System.getProperty("user.dir"), "Java 10 Лаба", "src", "main", "java", "DorzhievZhargalB7621", "B", "bouquet.txt").toString();
 
         while (true) {
             System.out.println("1. Добавить цветок\n2. Добавить аксессуар\n3. Посмотреть букет\n4. Сохранить букет\n5. Загрузить букет\n6. Отсортировать цветы по свежести\n7. Найти цветы по длине стебля\n8. Выйти");
