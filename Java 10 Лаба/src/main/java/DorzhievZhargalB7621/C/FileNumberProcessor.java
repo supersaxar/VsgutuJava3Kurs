@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 public class FileNumberProcessor {
-    private static final String BASE_DIRECTORY = "output";
+    private static final String BASE_DIRECTORY = "Java 10 Лаба/src/main/java/DorzhievZhargalB7621/C/output";
     private static final String FILE_NAME = "random_numbers.txt";
 
     public static void createDirectory() {
