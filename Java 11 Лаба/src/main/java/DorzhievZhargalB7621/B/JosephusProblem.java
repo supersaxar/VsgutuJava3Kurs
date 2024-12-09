@@ -8,14 +8,9 @@ import java.util.List;
 
 public class JosephusProblem {
 
-    public static int solveWithArrayList(int n) {
-        if (n <= 0) {
-            throw new IllegalArgumentException("Количество людей должно быть положительным");
-        }
-
-        List<Integer> circle = new ArrayList<>();
-        for (int i = 1; i <= n; i++) {
-            circle.add(i);
+    public static int solveJosephusProblem(List<Integer> circle) {
+        if (circle.isEmpty()) {
+            throw new IllegalArgumentException("Список не может быть пустым");
         }
 
         int currentIndex = 0;
@@ -27,61 +22,48 @@ public class JosephusProblem {
         return circle.get(0);
     }
 
-    public static int solveWithLinkedList(int n) {
-        if (n <= 0) {
-            throw new IllegalArgumentException("Количество людей должно быть положительным");
-        }
-
-        LinkedList<Integer> circle = new LinkedList<>();
-        for (int i = 1; i <= n; i++) {
-            circle.add(i);
-        }
-
-        while (circle.size() > 1) {
-            circle.add(circle.removeFirst());
-            circle.removeFirst();
-        }
-
-        return circle.getFirst();
-    }
 
     public static void main(String[] args) {
-        int n = 100000;
+        int n = 10000;
+
+        List<Integer> arrayListCircle = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            arrayListCircle.add(i);
+        }
 
         long startArrayList = System.nanoTime();
-        int resultArrayList = solveWithArrayList(n);
+        int resultArrayList = solveJosephusProblem(arrayListCircle);
         long endArrayList = System.nanoTime();
-
-        long startLinkedList = System.nanoTime();
-        int resultLinkedList = solveWithLinkedList(n);
-        long endLinkedList = System.nanoTime();
 
         System.out.println("Результат для ArrayList: " + resultArrayList);
         System.out.println("Время выполнения ArrayList: " + (endArrayList - startArrayList) + " нс");
 
-        System.out.println();
+        List<Integer> linkedListCircle = new LinkedList<>();
+        for (int i = 1; i <= n; i++) {
+            linkedListCircle.add(i);
+        }
 
-        System.out.println("Результат для LinkedList: " + resultLinkedList);
+        long startLinkedList = System.nanoTime();
+        int resultLinkedList = solveJosephusProblem(linkedListCircle);
+        long endLinkedList = System.nanoTime();
+
+        System.out.println("\nРезультат для LinkedList: " + resultLinkedList);
         System.out.println("Время выполнения LinkedList: " + (endLinkedList - startLinkedList) + " нс");
 
         System.out.println();
 
-        System.out.println("Причины более высокой производительности LinkedList в этой задаче:\n" +
+        System.out.println("Причины более высокой производительности ArrayList в этой задаче:\n" +
                 "\n" +
-                "1) Сложность операций удаления:" +
+                "1) Быстрый доступ по индексу: " +
                 "\n" +
-                "ArrayList: При удалении элемента из середины списка требуется сдвиг всех последующих элементов. Сложность операции O(n).\n" +
-                "LinkedList: Удаление элемента происходит за константное время O(1), так как достаточно просто перелинковать соседние узлы.\n" +
+                " ArrayList элементы хранятся в массиве, и доступ к ним происходит мгновенно. В LinkedList доступ к элементам требует перебора узлов, что значительно медленнее.\n" +
                 "\n" +
-                "2) Внутренняя реализация:" +
+                "2) Удаление перекрывается поиском: " +
                 "\n" +
-                "В данной задаче мы часто удаляем элементы из середины списка\n" +
-                "LinkedList не копирует массив целиком при удалении, как это делает ArrayList\n" +
-                "Узлы в LinkedList просто переподключаются, что значительно быстрее\n" +
+                "Хотя удаление в LinkedList быстрее, большая часть времени уходит на поиск элемента для удаления, так как список нужно перебрать.\n" +
                 "\n" +
-                "3) Алгоритм решения:\n" +
+                "3) Меньше затраты ресурсов компьютера: \n" +
                 "\n" +
-                "В реализации LinkedList мы используем более эффективный метод перемещения элементов\n" +
-                "Метод add() и removeFirst() в LinkedList работают за O(1)");
+                "В ArrayList нет дополнительных затрат на управление ссылками между узлами, как в LinkedList, что снижает расходы на операции.\n");
     }
 }
