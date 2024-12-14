@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DatabaseConnector {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/JavaLab13Ver2";
+    private static final String URL = "jdbc:postgresql://localhost:5432/JavaLab13";
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
 
